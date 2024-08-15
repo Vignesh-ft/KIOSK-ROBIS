@@ -3,37 +3,56 @@ const userModel = require('../models/userModel');
 const pool = require('../dbconfig')
 
 const createUser = async (req, res) => {
-    const { username, company, email, country, phone } = req.body;
+    const { username, company } = req.body;
 
     try {
-        const newUser = await pool.query(
-            'INSERT INTO users (username, company, email, country, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-            [username, company, email, country, phone]
-        );
-        res.status(201).json(newUser.rows[0]);
+      // Check if the username already exists
+      const existingUser = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+  
+      if (existingUser.rows.length > 0) {
+        return res.status(400).json({ message: 'Username already exists' });
+      }
+  
+      // Proceed to insert the new user
+      const newUser = await pool.query(
+        'INSERT INTO users (username, company) VALUES ($1, $2) RETURNING *',
+        [username, company]
+      );
+  
+      res.status(201).json(newUser.rows[0]); // Respond with the created user
     } catch (err) {
-        console.error('Error inserting data', err);
-        res.status(500).json({ error: 'Server error' });
+      console.error('Error inserting data', err);
+      res.status(500).json({ message: 'Server error' });
     }
 };
 
 
+
+// Function to delete a user by ID
 const deleteUser = async (req, res) => {
-    try {
-      const username = req.params.username;
-      const deletedUser = await userModel.findOneAndDelete({ username });
+    const userId = req.params.id; // Assuming you're getting the user ID from the request parameters
   
-      if (!deletedUser) {
+    try {
+      // Delete the user and return the deleted user data
+      const result = await pool.query(
+        'DELETE FROM users WHERE id = $1 RETURNING *',
+        [userId]
+      );
+  
+      // Check if any user was deleted
+      if (result.rowCount === 0) {
         return res.status(404).json({ message: 'User not found' });
       }
   
-      res.status(200).json({ message: 'User deleted successfully' });
+      // Return the deleted user data
+      res.status(200).json({ message: 'User deleted successfully', deletedUser: result.rows[0] });
     } catch (error) {
       console.error('Error deleting user:', error);
-      res.status(500).json({ message: 'Server error' });
+      res.status(500).json({ message: 'Internal server error' });
     }
   };
- 
+  
+  
 
 const loginUser = async (req, res) => {
     const { username, company } = req.body;
@@ -56,4 +75,4 @@ const loginUser = async (req, res) => {
     }
   };
 
-module.exports = { createUser, getAllUsers, getUserById, loginUser, deleteUser };
+module.exports = { createUser,  loginUser, deleteUser };

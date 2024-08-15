@@ -2,14 +2,16 @@
 const pool = require('./dbconfig');
 
 const createTableQuery = `
-CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    company VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    country VARCHAR(100) NOT NULL,
-    phone BIGINT NOT NULL
-);
+  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+  
+  CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    username TEXT UNIQUE NOT NULL,
+    company TEXT,
+    email TEXT,
+    country TEXT,
+    phone TEXT
+  );
 `;
 
 const createTable = async () => {
