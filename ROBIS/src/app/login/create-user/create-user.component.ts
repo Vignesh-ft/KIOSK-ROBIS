@@ -307,31 +307,44 @@ export class CreateUserComponent {
       }
     }
 
-    this.schema = {
-      userName: this.userName,
-      phoneNo: this.phoneNumber,
+    const user = {
+      username: this.userName,
+      company: this.companyName,
       email: this.emailAddress,
       country: this.country,
-      company: this.companyName,
+      phone: this.phoneNumber,
     };
-
-    this.userCredentials = [...this.userCredentials, this.schema]
-    console.log (this.userCredentials);
-
-
-    // Optionally reset form fields after successful validation
-    this.userName = "";
-    this.phoneNumber = "";
-    this.emailAddress = "";
-    this.country = "";
-    this.companyName = "";
-
-    alert("User Has been Created")
-    this.router.navigateByUrl("/login")
-
-    setTimeout(()=>{
-      this.errorMessage = ""
-      return
-    },2000)
+    fetch('http://localhost:3000/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('User created successfully:', data);
+        // Clear form fields after successful creation
+        this.userName = "";
+        this.phoneNumber = "";
+        this.emailAddress = "";
+        this.country = "";
+        this.companyName = "";
+  
+        // Navigate to login page
+        this.router.navigateByUrl('/login');
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        this.errorMessage = 'There was a problem with the fetch operation.';
+      });
+  
+    // Optionally reset user credentials array
+    this.userCredentials = [...this.userCredentials, this.schema];
   }
 }
