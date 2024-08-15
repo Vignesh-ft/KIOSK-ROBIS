@@ -40,4 +40,25 @@ const getUserById = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getAllUsers, getUserById };
+const loginUser = async (req, res) => {
+    const { username, company } = req.body;
+  
+    if (!username || !company) {
+      return res.status(400).json({ error: 'Username and Company are required' });
+    }
+  
+    try {
+      const result = await pool.query('SELECT * FROM users WHERE username = $1 AND company = $2', [username, company]);
+      
+      if (result.rows.length > 0) {
+        res.json({ message: 'Login successful', user: result.rows[0] });
+      } else {
+        res.status(401).json({ error: 'Invalid credentials' });
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  };
+
+module.exports = { createUser, getAllUsers, getUserById, loginUser };

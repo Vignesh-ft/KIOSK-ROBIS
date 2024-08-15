@@ -17,7 +17,7 @@ const routes: Routes = [
     component: CreateUserComponent
   },
   {
-    path:'',
+    path:'home',
     title: 'HOME | KIOSK',
     component: HomePageComponent
   },
