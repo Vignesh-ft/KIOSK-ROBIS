@@ -1,0 +1,52 @@
+<div class="w-full h-full flex flex-col items-start justify-center relative scroll-smooth">
+  <app-navbar class="w-full absolute top-0 left-0 z-50"></app-navbar>
+  <div class="w-screen h-auto flex flex-col">
+    <div class="w-screen h-screen flex items-center justify-center relative">
+      <span class="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 backdrop-blur-md"></span>
+      <app-video-player [videoURL]="videoPath" class="w-screen h-screen"></app-video-player>
+      <span class="absolute flex flex-col items-center justify-center">
+        <p class="text-white font-bold text-[6rem]">{{title}}</p>
+        <span [ngClass]="{'opacity-0 invisible': !showButton}" (click)="goto('about')" class="p-5 duration-300 visible rounded-full bg-[#DA2127]">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="white" class="size-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </span>
+      </span>
+    </div>
+
+    <div id="about" class="w-screen h-screen  p-10 flex items-start justify-between pt-32">
+      <div class="flex items-start flex-col justify-start gap-8 w-[40%]">
+        <p class="flex text-[30px] items-center text-white font-bold duration-300 hover:text-[#DA2127] hover:duration-300">{{title}}</p>
+        <p class="text-[#9f9f9f] indent-10 leading-9">{{about}}</p>
+
+        <span class="flex items-center justify-start gap-5 mt-16">
+          <button (click)="goto('products')" class="flex px-10 py-3 gap-2 items-center rounded-sm text-white font-medium bg-[#DA2127] text-[16px]">
+            Products
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+
+
+          </button>
+        </span>
+      </div>
+
+      <div (mouseenter)="hideMessage()" (mouseleave)="showMessage()" class="flex w-[55%] h-auto rounded-[15px] relative">
+        <p [ngClass]="{'opacity-0':!Message}" class="flex items-center absolute top-5 duration-200 px-5 pr-10 text-white py-3 border-r-[10px] rounded-e border-[#DA2127] bg-black">Hover to watch the Video</p>
+        <app-verticals-video [videoURL]="'../../../assets/Videos/KIOSK_ROBIS_MOTHERSON.mp4'"></app-verticals-video>
+      </div>
+    </div>
+
+    <div id="products" class="w-screen flex flex-col gap-32 p-10 items-center justify-start pb-40">
+      <p class="lineHover flex w-[300px] items-center flex-col justify-center gap-3 text-white font-bold text-[40px] tracking-wide">PRODUCTS<span class="border-[2px] w-full hoverLine duration-300 h-[1px] rounded-full border-[#DA2127]"></span></p>
+      <div class="flex items-center justify-center gap-10 w-full h-auto flex-wrap">
+        @for (product of products; track product) {
+          <app-verticals-card [name]="product.productName" [img]="product.productImg" [desc]="product.productDesc" [URL]="product.productURL"></app-verticals-card>
+        }
+      </div>
+
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</div>

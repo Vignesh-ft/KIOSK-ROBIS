@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
-  @apply bg-black
+  background-color: black;
+  cursor: url('./assets/cursor.svg') 16 16, auto;
 }
 
 

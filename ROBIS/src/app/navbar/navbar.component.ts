@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  logoColor = false
 
+  changeColor(){
+    this.logoColor = !this.logoColor
+  }
 }
