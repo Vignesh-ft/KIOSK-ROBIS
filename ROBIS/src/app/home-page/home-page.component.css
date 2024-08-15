@@ -1,0 +1,18 @@
+/* .lineHover:hover .hoverLine {
+  @apply w-full
+} */
+
+.hoverLine {
+  animation: growLine 300ms linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 60%;
+}
+
+@keyframes growLine {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 100%;
+  }
+}

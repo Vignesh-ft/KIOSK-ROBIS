@@ -1,0 +1,11 @@
+.onHoverMain:hover .hoverAnimation {
+  @apply w-full h-full rounded-[14px]
+}
+
+.onHoverMain:hover p {
+  @apply text-[#121212] duration-300
+}
+
+.onHoverMain:hover h1 {
+  @apply text-white duration-300
+}

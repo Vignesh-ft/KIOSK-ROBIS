@@ -1,0 +1,21 @@
+<div class="w-full h-full flex flex-col items-start justify-center relative">
+  <app-navbar class="w-full absolute top-0 left-0 z-50"></app-navbar>
+  <div class="w-screen h-screen">
+    <span class="w-screen h-screen bg-black bg-opacity-40 absolute top-0 left-0">
+
+    </span>
+    <app-video-player [videoURL]="'../../assets/Videos/KIOSK_ROBIS_MOTHERSON.mp4'"></app-video-player>
+  </div>
+
+  <div class="w-screen h-screen pb-32 flex flex-col gap-32 items-center justify-center relative p-10" id="verticals">
+    <p class="lineHover flex w-[300px] mt-20 items-center flex-col justify-center gap-3 text-white font-bold text-[40px] tracking-wide">VERTICALS <span class="border-[2px] w-full hoverLine duration-300 h-[1px] rounded-full border-[#DA2127]"></span></p>
+    <div class="w-full flex items-center justify-center flex-wrap gap-12">
+     @for (vertical of verticals; track vertical) {
+      <app-component-card class="cursor-pointer hover:scale-105 hover:duration-200 duration-200" [title]=vertical.title [routeURL]=vertical.path [description]=vertical.description></app-component-card>
+     }
+    </div>
+  </div>
+  
+  <app-footer></app-footer>
+</div>
+
