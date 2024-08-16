@@ -2,6 +2,8 @@ const express = require('express');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const XLSX = require('xlsx');
+const path = require('path'); 
 
 // Create an Express app
 const app = express();
@@ -164,6 +166,50 @@ app.post('/userdetails', async (req, res) => {
     } catch (err) {
       console.error('Error creating action:', err);
       res.status(500).json({ message: 'Error creating action', error: err.message });
+    }
+  });
+
+  app.get('/export-excel', async (req, res) => {
+    try {
+      const result = await pool.query(`
+        SELECT ud.name, ud.company, ud.country, ud.phone_number, ud.e_mail, ud.time, 
+               v.vertical_name, a.product 
+        FROM usersdetails ud
+        LEFT JOIN verticles v ON ud.id = v.user_id
+        LEFT JOIN actions a ON v.id = a.verticle_id;
+      `);
+  
+      const data = result.rows.map(row => ({
+        Name: row.name,
+        Company: row.company,
+        Country: row.country,
+        PhoneNumber: row.phone_number,
+        Email: row.e_mail,
+        Time: row.time,
+        VerticalName: row.vertical_name,
+        Product: row.product,
+      }));
+  
+      const worksheet = XLSX.utils.json_to_sheet(data);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+  
+      const filePath = path.join(__dirname, 'output.xlsx');
+      XLSX.writeFile(workbook, filePath);
+  
+      res.download(filePath, 'export.xlsx', (err) => {
+        if (err) {
+          console.error('Error sending file:', err);
+          res.status(500).json({ message: 'Error exporting data', error: err.message });
+        }
+  
+        fs.unlink(filePath, (unlinkErr) => {
+          if (unlinkErr) console.error('Error deleting file:', unlinkErr);
+        });
+      });
+    } catch (err) {
+      console.error('Error exporting data:', err);
+      res.status(500).json({ message: 'Error exporting data', error: err.message });
     }
   });
   
