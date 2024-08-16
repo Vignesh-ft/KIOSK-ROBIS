@@ -46,7 +46,8 @@ export class LoginComponent {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(loginData)
+      body: JSON.stringify(loginData),
+      credentials: 'include' // Ensure cookies are included in the request
     })
     .then(response => {
       if (!response.ok) {

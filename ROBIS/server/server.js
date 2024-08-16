@@ -23,7 +23,9 @@ const pool = new Pool({
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  credentials: true // Allow cookies to be sent
+}));
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(cookieParser());
 
