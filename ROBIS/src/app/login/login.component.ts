@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   userName = '';
   companyName = '';
+  email='';
+  country='';
+  phone='';
   errorMessage = '';
   
   constructor(private router: Router) {}
@@ -33,42 +36,56 @@ export class LoginComponent {
       return;
     }
 
-    // Prepare the login data
     const loginData = {
       username: this.userName.trim(),
       company: this.companyName.trim()
     };
-
-    fetch('http://localhost:3000/api/users', {
+    
+    fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(loginData)
     })
     .then(response => {
       if (!response.ok) {
-        return response.json().then(data => {
-          // Check if the error message is present in the response
-          this.errorMessage = data.message || 'Something went wrong'; // Set error message
-          throw new Error(this.errorMessage);
-        });
+        throw new Error('Network response was not ok');
       }
       return response.json();
     })
     .then(data => {
-      // Handle successful user creation
-      console.log('User created:', data);
-
-      // Redirect or perform other actions
-      this.router.navigate(['/home']); // Example redirect
+      if (data.message === 'Login successful') {
+        this.router.navigateByUrl('/home');
+    
+        // Prepare the user details fetched from the login response
+        const userDetails = {
+          name: data.user.username,
+          email: data.user.email || null,
+          company: data.user.company,
+          country: data.user.country || null,
+          phoneNumber: data.user.phone || null,
+          time: new Date().toISOString() // Current timestamp
+        };
+    
+        // Make a second fetch request to store the user's details
+        return fetch('http://localhost:3000/userdetails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userDetails)
+        });
+      } else {
+        this.errorMessage = data.error || 'Invalid credentials';
+        throw new Error(this.errorMessage);
+      }
     })
     .catch(error => {
-      // Handle fetch errors
       console.error('There was a problem with the fetch operation:', error);
-      this.errorMessage = error.message; // Display the error message on the screen
+      this.errorMessage = 'There was a problem with the fetch operation.';
     });
+    
 
     // Clear fields after submission
     this.userName = '';
