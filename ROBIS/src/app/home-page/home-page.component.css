@@ -2,6 +2,33 @@
   @apply w-full
 } */
 
+b{
+  @apply text-[#DA2127] text-[48px]
+}
+
+.titleCSS {
+  color: #fff;
+  font-weight: 500;
+  line-height: 3.2rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  list-style: none;
+}
+
+.textRed{
+  color: #DA2127;
+  font-weight: 500;
+  line-height: 3.2rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  list-style: none;
+}
+
+
 .hoverLine {
   animation: growLine 300ms linear;
   animation-timeline: view();

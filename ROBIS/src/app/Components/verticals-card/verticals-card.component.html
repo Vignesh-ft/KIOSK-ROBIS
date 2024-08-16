@@ -1,6 +1,6 @@
 <a [routerLink]="URL">
-  <div class="w-[260px] h-[380px] flex flex-col items-start justify-normal hover:scale-105 hover:shadow-[0_0_30px_#FFFFFF50] duration-200 hover:duration-200 bg-white rounded-[10px]">
-    <div class="w-full h-[50%] flex items-center justify-center bg-black bg-opacity-20 rounded-[10px_10px_0_0]">
+  <div class="w-full h-[380px] flex flex-col items-start justify-normal hover:scale-105 hover:shadow-[0_0_30px_#FFFFFF50] duration-200 hover:duration-200 bg-white rounded-[10px]">
+    <div class="w-full h-[55%] flex items-center justify-center bg-black bg-opacity-20 rounded-[10px_10px_0_0]">
       @if(img){<img [src]="img" alt="Product Image">}
       @else {
         <svg class="size-20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.7 81" style="enable-background:new 0 0 72.7 81;" xml:space="preserve">
@@ -16,9 +16,9 @@
          </svg>
       }
     </div>
-    <div class="w-full flex flex-col h-[50%] px-5 gap-3 py-3">
+    <div class="w-full flex flex-col h-[45%] px-6 gap-3 py-6">
       <p class="flex text-[20px] font-semibold">{{name}}</p>
-      <p class="flex text-[#121212] indent-5">{{desc}}</p>
+      <p class="flex text-[#121212] indent-5 text-justify">{{desc}}</p>
     </div>
   </div>
 </a>
