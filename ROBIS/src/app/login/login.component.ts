@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
   userName = '';
   phoneNumber = '';
@@ -14,7 +16,7 @@ export class LoginComponent {
   phone='';
   errorMessage = '';
   
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cookieService: CookieService) {}
 
   validateLogin() {
     // Clear previous error message
@@ -47,7 +49,6 @@ export class LoginComponent {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(loginData),
-      credentials: 'include' // Ensure cookies are included in the request
     })
     .then(response => {
       if (!response.ok) {
@@ -59,6 +60,7 @@ export class LoginComponent {
       console.log('Login response data:', data);  // Log the response data
       if (data.message === 'Login successful') {
         this.router.navigateByUrl('/home');
+        
         
         // Prepare the user details fetched from the login response
         const userDetails = {
@@ -82,6 +84,23 @@ export class LoginComponent {
       } else {
         this.errorMessage = data.error || 'Invalid credentials';
         throw new Error(this.errorMessage);
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to save user details');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('User details response:', data);
+      if (data.message === 'User created') {
+        // Set the cookie with appropriate options
+        this.cookieService.set('userId', data.userId, { path: '/', sameSite: 'Lax' }); // Adjust SameSite based on your setup
+        console.log('User ID stored in cookie:', this.cookieService.get('userId'));
+        this.router.navigateByUrl('/home');
+      } else {
+        this.errorMessage = 'Failed to save user details';
       }
     })
     .catch(error => {

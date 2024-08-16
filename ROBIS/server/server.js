@@ -5,7 +5,7 @@ const cors = require('cors');
 const XLSX = require('xlsx');
 const path = require('path'); 
 const fs = require('fs');
-const cookieParser = require('cookie-parser'); // Import cookie-parser
+const cookieParser = require('cookie-parser');
 
 // Create an Express app
 const app = express();
@@ -24,6 +24,7 @@ const pool = new Pool({
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 app.use(cors({
+  origin: 'http://localhost:4200', // Allow requests from your Angular app
   credentials: true // Allow cookies to be sent
 }));
 app.use(express.json()); // Middleware to parse JSON bodies
@@ -89,15 +90,7 @@ app.post('/login', async (req, res) => {
     
     if (result.rows.length > 0) {
       const user = result.rows[0];
-      
-      // Set cookie with unique ID
-      res.cookie('userId', user.id, {
-        httpOnly: true,
-        secure: false, // Change to true if using HTTPS
-        sameSite: 'Strict', // Adjust based on your needs
-        maxAge: 24 * 60 * 60 * 1000 // Cookie expiry time (1 day in milliseconds)
-      });
-      
+    
       res.json({
         message: 'Login successful',
         user: {
@@ -120,10 +113,9 @@ app.post('/login', async (req, res) => {
 
 
 app.post('/userdetails', async (req, res) => {
-  console.log('Request body:', req.body); // Log the entire request body
+  
 
   let { name, email, company, country, phoneNumber, time } = req.body;
-  console.log('Parsed data:', { name, email, company, country, phoneNumber, time });
 
   // Convert empty or undefined values to null for the database
   email = email && email.trim() !== '' ? email.trim() : null;
@@ -137,8 +129,8 @@ app.post('/userdetails', async (req, res) => {
       [name, email, company, country, phoneNumber, time]
     );
 
-    const userId = result.rows[0].id;
-    res.status(201).json({ message: 'User created', userId });
+    const userId = result.rows[0].id; // Get the auto-generated ID
+    res.status(201).json({ message: 'User details saved', id: userId }); // Return the userId
   } catch (err) {
     console.error('Error creating user:', err);
     res.status(500).json({ message: 'Error creating user', error: err.message });

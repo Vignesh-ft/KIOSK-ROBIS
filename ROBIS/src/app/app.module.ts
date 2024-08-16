@@ -17,6 +17,7 @@ import { ProductTemplateComponent } from './Verticals/product-template/product-t
 import { VerticalsVideoComponent } from './Components/verticals-video/verticals-video.component';
 import { VerticalsCardComponent } from './Components/verticals-card/verticals-card.component';
 import { RAssetComponent } from './Verticals/industry4-0/Products/r-asset/r-asset.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { RAssetComponent } from './Verticals/industry4-0/Products/r-asset/r-asse
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
