@@ -14,19 +14,16 @@
       </span>
     </div>
 
-    <div id="about" class="w-screen h-screen  p-10 flex items-start justify-between pt-32">
-      <div class="flex items-start flex-col justify-start gap-8 w-[40%]">
+    <div id="about" class="w-screen h-screen gap-8  p-10 flex items-start justify-between pt-32">
+      <div class="flex items-start flex-col justify-start gap-8 w-[50%]">
         <p class="flex text-[30px] items-center text-white font-bold duration-300 hover:text-[#DA2127] hover:duration-300">{{title}}</p>
-        <p class="text-[#9f9f9f] indent-10 leading-9">{{about}}</p>
-
-        <span class="flex items-center justify-start gap-5 mt-16">
+        <p class="text-[#9f9f9f] indent-10 leading-9 text-justify">{{about}}</p>
+        <span class="flex items-center justify-start gap-5 mt-10">
           <button (click)="goto('products')" class="flex px-10 py-3 gap-2 items-center rounded-sm text-white font-medium bg-[#DA2127] text-[16px]">
             Products
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
-
-
           </button>
         </span>
       </div>
@@ -39,7 +36,7 @@
 
     <div id="products" class="w-screen flex flex-col gap-32 p-10 items-center justify-start pb-40">
       <p class="lineHover flex w-[300px] items-center flex-col justify-center gap-3 text-white font-bold text-[40px] tracking-wide">PRODUCTS<span class="border-[2px] w-full hoverLine duration-300 h-[1px] rounded-full border-[#DA2127]"></span></p>
-      <div class="flex items-center justify-center gap-10 w-full h-auto flex-wrap">
+      <div class="grid grid-cols-2 items-center justify-center gap-10 w-full h-auto">
         @for (product of products; track product) {
           <app-verticals-card [name]="product.productName" [img]="product.productImg" [desc]="product.productDesc" [URL]="product.productURL"></app-verticals-card>
         }

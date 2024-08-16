@@ -28,11 +28,11 @@ const routes: Routes = [
     title:'Industry 4.0 | KIOSK',
     component: Industry40Component
   },
-  {
-    path:'industry4-0/r-asset',
-    title: 'R-Asset | Industry4.0',
-    component: RAssetComponent
-  },
+  // {
+  //   path:'industry4-0/r-asset',
+  //   title: 'R-Asset | Industry4.0',
+  //   component: RAssetComponent
+  // },
   {
     path:"testing",
     component:ProductTemplateComponent
