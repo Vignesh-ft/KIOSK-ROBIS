@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   userName = '';
-  companyName = '';
+  phoneNumber = '';
   email='';
   country='';
   phone='';
@@ -19,26 +19,26 @@ export class LoginComponent {
   validateLogin() {
     // Clear previous error message
     this.errorMessage = '';
-
+  
     // Validate inputs
-    if (this.userName.trim() === '' && this.companyName.trim() === '') {
-      this.errorMessage = 'Username and Company Name are required';
+    if (this.userName.trim() === '' && this.phoneNumber.trim() === '') {
+      this.errorMessage = 'Username and Phone Number are required';
       return;
     }
-
+  
     if (this.userName.trim() === '') {
       this.errorMessage = 'Username is required';
       return;
     }
-
-    if (this.companyName.trim() === '') {
-      this.errorMessage = 'Company name is required';
+  
+    if (this.phoneNumber.trim() === '') {
+      this.errorMessage = 'Phone Number is required';
       return;
     }
-
+  
     const loginData = {
       username: this.userName.trim(),
-      company: this.companyName.trim()
+      phone: this.phoneNumber.trim()
     };
     
     fetch('http://localhost:3000/login', {
@@ -55,19 +55,21 @@ export class LoginComponent {
       return response.json();
     })
     .then(data => {
+      console.log('Login response data:', data);  // Log the response data
       if (data.message === 'Login successful') {
         this.router.navigateByUrl('/home');
-    
+        
         // Prepare the user details fetched from the login response
         const userDetails = {
-          name: data.user.username,
+          name: data.user.name || null,
           email: data.user.email || null,
-          company: data.user.company,
+          company: data.user.company || null,
           country: data.user.country || null,
-          phoneNumber: data.user.phone || null,
+          phoneNumber: data.user.phoneNumber || null,
           time: new Date().toISOString() // Current timestamp
         };
-    
+        
+        console.log('Sending user details:', userDetails);
         // Make a second fetch request to store the user's details
         return fetch('http://localhost:3000/userdetails', {
           method: 'POST',
@@ -86,11 +88,11 @@ export class LoginComponent {
       this.errorMessage = 'There was a problem with the fetch operation.';
     });
     
-
+  
     // Clear fields after submission
     this.userName = '';
-    this.companyName = '';
-
+    this.phoneNumber = '';
+  
     // Optional: Clear the error message after a certain period
     setTimeout(() => {
       this.errorMessage = '';

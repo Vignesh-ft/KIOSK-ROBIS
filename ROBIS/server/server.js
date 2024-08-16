@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const XLSX = require('xlsx');
 const path = require('path'); 
+const fs = require('fs');
+const cookieParser = require('cookie-parser'); // Import cookie-parser
 
 // Create an Express app
 const app = express();
@@ -22,8 +24,8 @@ const pool = new Pool({
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.json());
-
+app.use(express.json()); // Middleware to parse JSON bodies
+app.use(cookieParser());
 
 
 //creating the new user
@@ -31,12 +33,12 @@ app.post('/createUsers', async (req, res) => {
   const { username, company, email, country, phone } = req.body;
 
   try {
-    // Check if the username already exists
-    const existingUser = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+    // // Check if the username already exists
+    // const existingUser = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
 
-    if (existingUser.rows.length > 0) {
-      return res.status(400).json({ message: 'Username already exists' });
-    }
+    // if (existingUser.rows.length > 0) {
+    //   return res.status(400).json({ message: 'Username already exists' });
+    // }
 
     // Proceed to insert the new user
     const newUser = await pool.query(
@@ -78,20 +80,25 @@ app.delete('/createUsers', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const { username, company } = req.body;
+  const { username, phone } = req.body;
   try {
-    const result = await pool.query('SELECT * FROM users WHERE username = $1 AND company = $2', [username, company]);
+    // Ensure column names in the SQL query match those in your database
+    const result = await pool.query('SELECT * FROM users WHERE username = $1 AND phone = $2', [username, phone]);
     
     if (result.rows.length > 0) {
       const user = result.rows[0];
+      
+      // Set cookie with unique ID
+      res.cookie('userId', user.id, { httpOnly: true, secure: false }); // Change to true if using HTTPS in production
+      
       res.json({
         message: 'Login successful',
         user: {
           name: user.username,
-          email: user.e_mail,
+          email: user.email,        
           company: user.company,
           country: user.country,
-          phoneNumber: user.phone_number
+          phoneNumber: user.phone
         }
       });
     } else {
@@ -104,9 +111,12 @@ app.post('/login', async (req, res) => {
 });
 
 
-// Storing the user details
+
 app.post('/userdetails', async (req, res) => {
-  let { name, email, company, country, phoneNumber } = req.body;
+  console.log('Request body:', req.body); // Log the entire request body
+
+  let { name, email, company, country, phoneNumber, time } = req.body;
+  console.log('Parsed data:', { name, email, company, country, phoneNumber, time });
 
   // Convert empty or undefined values to null for the database
   email = email && email.trim() !== '' ? email.trim() : null;
@@ -116,7 +126,7 @@ app.post('/userdetails', async (req, res) => {
   try {
     // Insert user into the usersdetails table
     const result = await pool.query(
-      'INSERT INTO usersdetails (name, e_mail, company, country, phone_number, time) VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING id',
+      'INSERT INTO usersdetails (name, e_mail, company, country, phone_number, time) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
       [name, email, company, country, phoneNumber, time]
     );
 
@@ -127,6 +137,8 @@ app.post('/userdetails', async (req, res) => {
     res.status(500).json({ message: 'Error creating user', error: err.message });
   }
 });
+
+
 
 
   // Route to create a vertical
@@ -179,13 +191,14 @@ app.post('/userdetails', async (req, res) => {
         LEFT JOIN actions a ON v.id = a.verticle_id;
       `);
   
+      // Format the data with formatted dates
       const data = result.rows.map(row => ({
         Name: row.name,
         Company: row.company,
         Country: row.country,
         PhoneNumber: row.phone_number,
         Email: row.e_mail,
-        Time: row.time,
+        Time: row.time ? format(new Date(row.time), 'dd/MM/yyyy HH:mm') : null, // Format the date
         VerticalName: row.vertical_name,
         Product: row.product,
       }));
@@ -211,7 +224,7 @@ app.post('/userdetails', async (req, res) => {
       console.error('Error exporting data:', err);
       res.status(500).json({ message: 'Error exporting data', error: err.message });
     }
-  });
+  });  
   
   
   
