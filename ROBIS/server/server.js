@@ -89,7 +89,12 @@ app.post('/login', async (req, res) => {
       const user = result.rows[0];
       
       // Set cookie with unique ID
-      res.cookie('userId', user.id, { httpOnly: true, secure: false }); // Change to true if using HTTPS in production
+      res.cookie('userId', user.id, {
+        httpOnly: true,
+        secure: false, // Change to true if using HTTPS
+        sameSite: 'Strict', // Adjust based on your needs
+        maxAge: 24 * 60 * 60 * 1000 // Cookie expiry time (1 day in milliseconds)
+      });
       
       res.json({
         message: 'Login successful',
