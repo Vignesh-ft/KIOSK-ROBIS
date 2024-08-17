@@ -18,10 +18,10 @@ export class ComponentCardComponent {
     console.log("Card is working!");
     const userId = this.cookieService.get('userId'); // Retrieve UUID from cookie
 
-const verticalData = {
-  userId: userId,
-  verticalName: title
-};
+  const verticalData = {
+    userId: userId,
+    verticalName: title
+  };
 
 console.log('Sending request to save vertical:', verticalData); // Log the data being sent
 
