@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-verticals-template',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class VerticalsTemplateComponent implements OnInit {
   @Input() data:any
 
-  constructor(private router:Router){}
+  constructor(private router:Router, private cookieService: CookieService){}
 
   currentAddress = this.router.url
 
@@ -41,6 +42,40 @@ export class VerticalsTemplateComponent implements OnInit {
       this.showButton = true
     },2000)
   }
+
+  productClick(title:any) {
+    console.log("Product clicked!");
+    const verticleId = this.cookieService.get('verticalId'); // Retrieve UUID from cookie
+  
+    const productData = {
+      verticle_id: verticleId, // Ensure this matches the backend parameter name
+      product: title // Ensure this matches the backend parameter name
+    };
+  
+    console.log('Sending request: ', productData);
+  
+    fetch('http://localhost:3000/actions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productData)
+    })
+    .then(response => {
+      console.log('Received response:', response.status); // Log the status code of the response
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Product saved:', data);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error); // Log any errors
+    });
+  }
+  
 
   goto(address:any) {
     document.getElementById(address)?.scrollIntoView({behavior:'smooth'})

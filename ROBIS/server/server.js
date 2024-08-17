@@ -6,18 +6,18 @@ const XLSX = require('xlsx');
 const path = require('path'); 
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
+const { format } = require('date-fns');
 
-// Create an Express app
-const app = express();
-const port = 3000;
+const app = express(); //express framework
+const port = 3000; //port is running in this port
 
 
 // Configure PostgreSQL connection
 const pool = new Pool({
-  user: 'postgres',     // replace with your PostgreSQL username
+  user: 'postgres',     
   host: 'localhost',
-  database: 'postgres', // replace with your database name
-  password: 'robis@123', // replace with your PostgreSQL password
+  database: 'postgres',
+  password: 'robis@123', 
   port: 5432,
 });
 
@@ -36,14 +36,6 @@ app.post('/createUsers', async (req, res) => {
   const { username, company, email, country, phone } = req.body;
 
   try {
-    // // Check if the username already exists
-    // const existingUser = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
-
-    // if (existingUser.rows.length > 0) {
-    //   return res.status(400).json({ message: 'Username already exists' });
-    // }
-
-    // Proceed to insert the new user
     const newUser = await pool.query(
       'INSERT INTO users (username, company, email, country, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [username, company, email, country, phone]
@@ -56,32 +48,7 @@ app.post('/createUsers', async (req, res) => {
   }
 });
 
-
-
-// Function to delete a user by ID
-app.delete('/createUsers', async (req, res) => {
-  const userId = req.params.id; // Assuming you're getting the user ID from the request parameters
-
-  try {
-    // Delete the user and return the deleted user data
-    const result = await pool.query(
-      'DELETE FROM users WHERE id = $1 RETURNING *',
-      [userId]
-    );
-
-    // Check if any user was deleted
-    if (result.rowCount === 0) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    // Return the deleted user data
-    res.status(200).json({ message: 'User deleted successfully', deletedUser: result.rows[0] });
-  } catch (error) {
-    console.error('Error deleting user:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
+//Login with the username and phone number
 app.post('/login', async (req, res) => {
   const { username, phone } = req.body;
   try {
@@ -111,10 +78,8 @@ app.post('/login', async (req, res) => {
 });
 
 
-
+//posting the userdetails when the login succeed
 app.post('/userdetails', async (req, res) => {
-  
-
   let { name, email, company, country, phoneNumber, time } = req.body;
 
   // Convert empty or undefined values to null for the database
@@ -130,7 +95,8 @@ app.post('/userdetails', async (req, res) => {
     );
 
     const userId = result.rows[0].id; // Get the auto-generated ID
-    res.status(201).json({ message: 'User details saved', id: userId }); // Return the userId
+
+    res.status(201).json({ message: 'User details saved', id: userId }); // Respond with the created user ID
   } catch (err) {
     console.error('Error creating user:', err);
     res.status(500).json({ message: 'Error creating user', error: err.message });
@@ -138,12 +104,9 @@ app.post('/userdetails', async (req, res) => {
 });
 
 
-
-
-  // Route to create a vertical
+  // if routing to partcular verticles is succeed, then the user's unique id and vertical name will store in the DB
     app.post('/verticles', async (req, res) => {
     const { userId, verticalName } = req.body;
-    console.log("USerID", userId);
     
     try {
       // Insert vertical into the verticles table
@@ -152,34 +115,36 @@ app.post('/userdetails', async (req, res) => {
         [userId, verticalName]
       );
   
-      const verticalId = result.rows[0].id;
-      res.status(201).json({ message: 'Vertical created', verticalId });
-    } catch (err) {
-      console.error('Error creating vertical:', err);
-      res.status(500).json({ message: 'Error creating vertical', error: err.message });
-    }
+      const verticalId = result.rows[0].id; // Get the auto-generated ID
+    res.status(201).json({ message: 'Vertical saved', verticalId }); // Return the vertical ID
+  } catch (error) {
+    console.error('Error saving vertical:', error);
+    res.status(500).json({ error: 'Failed to save vertical' });
+  }
   });
   
   
 
-  app.post('/api/actions', async (req, res) => {
-    const { VerticleId, Product } = req.body;
-  
+  //  if routing to partcular product is succeed, then the verticle's unique id and product name will store in the DB
+  app.post('/actions', async (req, res) => {
+    const { verticle_id, product } = req.body;
+
     try {
+      // Insert action into the Actions table
       const result = await pool.query(
-        `INSERT INTO Actions (Verticle_id, Product) 
-         VALUES ($1, $2) RETURNING id`,
-        [VerticleId, Product || null]
+        'INSERT INTO actions (verticle_id, product) VALUES ($1, $2) RETURNING id',
+        [verticle_id, product]
       );
-  
+
       const actionId = result.rows[0].id;
-      res.status(201).json({ message: 'Action created successfully', actionId, VerticleId });
+      res.status(201).json({ message: 'Action created successfully', actionId });
     } catch (err) {
       console.error('Error creating action:', err);
-      res.status(500).json({ message: 'Error creating action', error: err.message });
+      res.status(500).json({ error: 'Internal Server Error' });
     }
   });
 
+  //
   app.get('/export-excel', async (req, res) => {
     try {
       const result = await pool.query(`
@@ -190,14 +155,14 @@ app.post('/userdetails', async (req, res) => {
         LEFT JOIN actions a ON v.id = a.verticle_id;
       `);
   
-      // Format the data with formatted dates
       const data = result.rows.map(row => ({
         Name: row.name,
         Company: row.company,
         Country: row.country,
         PhoneNumber: row.phone_number,
         Email: row.e_mail,
-        Time: row.time ? format(new Date(row.time), 'dd/MM/yyyy HH:mm') : null, // Format the date
+        // Format the date using date-fns
+        Time: row.time ? format(new Date(row.time), 'dd/MM/yyyy HH:mm') : null, 
         VerticalName: row.vertical_name,
         Product: row.product,
       }));
@@ -223,7 +188,8 @@ app.post('/userdetails', async (req, res) => {
       console.error('Error exporting data:', err);
       res.status(500).json({ message: 'Error exporting data', error: err.message });
     }
-  });  
+  });
+   
   
   
   
