@@ -17,7 +17,7 @@ export class HomePageComponent {
     {
       path: "/industry4-0",
       title: "Industry 4.0 & Cloud solutions​",
-      description: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sapiente, hic, illum saepe iste deleniti officia"
+      description: "Industry 4.0 is the fourth industrial revolution, integrating IoT, AI, and big data to create smart factories that enhance automation, efficiency, and innovation in manufacturing."
     },
     {
       path: "/machine-rmfg",
@@ -42,7 +42,7 @@ export class HomePageComponent {
     {
       path: "/mat-handlng",
       title: "Material Handling & Warehouse Automation​",
-      description: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sapiente, hic, illum saepe iste deleniti officia"
+      description: "Material handling and warehouse automation optimize the movement, storage, and management of goods, boosting efficiency and accuracy in warehouse operations."
     }
   ]
 

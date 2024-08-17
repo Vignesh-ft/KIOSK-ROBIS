@@ -17,6 +17,11 @@ import { ProductTemplateComponent } from './Verticals/product-template/product-t
 import { VerticalsVideoComponent } from './Components/verticals-video/verticals-video.component';
 import { VerticalsCardComponent } from './Components/verticals-card/verticals-card.component';
 import { RAssetComponent } from './Verticals/industry4-0/Products/r-asset/r-asset.component';
+import { RemanufracturingServicesComponent } from './Verticals/remanufracturing-services/remanufracturing-services.component';
+import { AssemblyAndTestingSolutionsComponent } from './Verticals/assembly-and-testing-solutions/assembly-and-testing-solutions.component';
+import { ImmRobotAndAccessoriesComponent } from './Verticals/imm-robot-and-accessories/imm-robot-and-accessories.component';
+import { JoiningSolutionsComponent } from './Verticals/joining-solutions/joining-solutions.component';
+import { MaterialHandlingComponent } from './Verticals/material-handling/material-handling.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { RAssetComponent } from './Verticals/industry4-0/Products/r-asset/r-asse
     ProductTemplateComponent,
     VerticalsVideoComponent,
     VerticalsCardComponent,
-    RAssetComponent
+    RAssetComponent,
+    RemanufracturingServicesComponent,
+    AssemblyAndTestingSolutionsComponent,
+    ImmRobotAndAccessoriesComponent,
+    JoiningSolutionsComponent,
+    MaterialHandlingComponent
   ],
   imports: [
     BrowserModule,
