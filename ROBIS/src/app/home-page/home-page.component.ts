@@ -15,6 +15,7 @@ export class HomePageComponent {
 
   verticals = [
     {
+
       path: "/industry4-0",
       title: "Industry 4.0 & Cloud solutions​",
       description: "Industry 4.0 is the fourth industrial revolution, integrating IoT, AI, and big data to create smart factories that enhance automation, efficiency, and innovation in manufacturing."
@@ -49,4 +50,6 @@ export class HomePageComponent {
   goto(address:any) {
     document.getElementById(address)?.scrollIntoView({behavior:'smooth'})
   }
+
+  
 }

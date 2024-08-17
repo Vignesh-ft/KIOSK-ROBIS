@@ -22,6 +22,7 @@ import { AssemblyAndTestingSolutionsComponent } from './Verticals/assembly-and-t
 import { ImmRobotAndAccessoriesComponent } from './Verticals/imm-robot-and-accessories/imm-robot-and-accessories.component';
 import { JoiningSolutionsComponent } from './Verticals/joining-solutions/joining-solutions.component';
 import { MaterialHandlingComponent } from './Verticals/material-handling/material-handling.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { MaterialHandlingComponent } from './Verticals/material-handling/materia
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

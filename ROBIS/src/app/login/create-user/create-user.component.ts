@@ -314,35 +314,41 @@ export class CreateUserComponent {
       country: this.country,
       phone: this.phoneNumber,
     };
-    fetch('http://localhost:3000/api/users', {
+    fetch('http://localhost:3000/createUsers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(user),
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('User created successfully:', data);
-        // Clear form fields after successful creation
-        this.userName = "";
-        this.phoneNumber = "";
-        this.emailAddress = "";
-        this.country = "";
-        this.companyName = "";
-  
-        // Navigate to login page
-        this.router.navigateByUrl('/login');
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-        this.errorMessage = 'There was a problem with the fetch operation.';
-      });
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(data => {
+          console.error('Fetch error response:', data); // Log error response details
+          this.errorMessage = data.message || 'Something went wrong';
+          throw new Error(this.errorMessage);
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('User created successfully:', data);
+      
+      // Clear form fields after successful creation
+      this.userName = "";
+      this.phoneNumber = "";
+      this.emailAddress = "";
+      this.country = "";
+      this.companyName = "";
+    
+      // Navigate to login page
+      this.router.navigateByUrl('/login');
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+      this.errorMessage = error.message || 'There was a problem with the fetch operation.';
+    });
+    
   
     // Optionally reset user credentials array
     this.userCredentials = [...this.userCredentials, this.schema];

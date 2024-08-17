@@ -33,7 +33,7 @@
     <p class="lineHover flex w-[300px] mt-20 items-center flex-col justify-center gap-3 text-white font-bold text-[40px] tracking-wide">VERTICALS <span class="border-[2px] w-full hoverLine duration-300 h-[1px] rounded-full border-[#DA2127]"></span></p>
     <div class="w-full flex items-center justify-center flex-wrap gap-12">
      @for (vertical of verticals; track vertical) {
-      <app-component-card class="cursor-pointer hover:scale-105 hover:duration-200 duration-200" [title]=vertical.title [routeURL]=vertical.path [description]=vertical.description></app-component-card>
+      <app-component-card  class="cursor-pointer hover:scale-105 hover:duration-200 duration-200" [title]=vertical.title [routeURL]=vertical.path [description]=vertical.description></app-component-card>
      }
     </div>
   </div>
