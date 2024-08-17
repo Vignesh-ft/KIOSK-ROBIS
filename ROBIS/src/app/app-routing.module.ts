@@ -14,18 +14,18 @@ import { TermsAndConditionsComponent } from './login/terms-and-conditions/terms-
 import { CorporateVideoComponent } from './home-page/corporate-video/corporate-video.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'login',
-  //   title: 'Login | ROBIS',
-  //   component:LoginComponent,
-  // },
+  {
+    path: '',
+    title: 'Login | ROBIS',
+    component:LoginComponent,
+  },
   {
     path:'createUser',
     title:'Create | ROBIS',
     component: CreateUserComponent
   },
   {
-    path:'',
+    path:'home',
     title: 'Home | ROBIS',
     component: HomePageComponent
   },
@@ -65,7 +65,7 @@ const routes: Routes = [
   },
   {
     path:'create/terms-and-condition/show',
-    title:'Terms and Condition',
+    title:'T&C',
     component: TermsAndConditionsComponent
   },
   {

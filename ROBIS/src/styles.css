@@ -9,6 +9,10 @@
   cursor: default;         /* Ensure the cursor doesn't change to a text cursor */
 }
 
+input{
+  cursor: text;
+}
+
 
 
 body {

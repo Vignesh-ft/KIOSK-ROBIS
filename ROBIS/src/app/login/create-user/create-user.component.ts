@@ -316,6 +316,7 @@ export class CreateUserComponent {
 
       else if(this.tAndC === false) {
         this.errorMessage = "Accept the Terms and Conditions"
+        return
       }
     }
 

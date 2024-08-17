@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 export class RemanufracturingServicesComponent {
   data={
     videoPath : "../../../assets/Videos/Remanufracturing.mp4",
-    title: "Remanufracturing Solutions",
+    title: "Remanufacturing Solutions",
+    aboutVideo:'../../../assets/Videos/Remanufacturing_Display.mp4',
     subTitle: "SERVICES",
     about: "ROBIS provides comprehensive IMM (Injection Molding Machine) Remanufacturing Services designed to enhance the performance, efficiency, and lifespan of your existing machinery. Our expert services address a range of needs, from upgrading control systems to relocating and retrofitting machines. We focus on delivering tailored solutions that meet your specific requirements and improve the functionality of your equipment.",
     documentLink: "",

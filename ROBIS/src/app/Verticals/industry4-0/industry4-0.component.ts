@@ -9,6 +9,7 @@ export class Industry40Component {
   data={
     videoPath : "../../../assets/Videos/Industry4.0.mp4",
     title: "Industry 4.0",
+    aboutVideo: '../../../assets/Videos/R Cloud.mp4',
     subTitle : 'SERVICES',
     about: "ROBIS offers a comprehensive suite of digitization solutions designed to revolutionize your operations under Industry 4.0. Our solutions integrate advanced technologies to enhance visibility, efficiency, and sustainability within your facility. By leveraging real-time data and cutting-edge analytics, ROBIS empowers you to make informed decisions and drive operational excellence. ",
     documentLink: "",

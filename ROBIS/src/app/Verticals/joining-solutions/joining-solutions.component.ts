@@ -10,6 +10,7 @@ export class JoiningSolutionsComponent {
     videoPath : "../../../assets/Videos/Joining Process.mp4",
     title: "Joining Solutions",
     subTitle:'SERVICES',
+    aboutVideo:'../../../assets/Videos/Joining_Video.mp4',
     about: "ROBIS provides a diverse range of Joining Solutions designed to meet various needs in plastic joining and assembly. Our advanced technologies ensure strong, reliable, and precise connections, enhancing product quality and manufacturing efficiency. Whether you require standard joining methods or customized solutions, we offer the expertise and technology to deliver optimal results.",
     documentLink: "",
     products:[
