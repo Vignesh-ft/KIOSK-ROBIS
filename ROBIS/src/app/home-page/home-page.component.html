@@ -1,12 +1,12 @@
 <div class="w-full h-full flex flex-col items-start justify-center relative snap-x scroll-smooth snap-center snap-mandatory">
   <app-navbar class="w-full absolute top-0 left-0 z-50"></app-navbar>
   <div class="w-screen h-screen">
-    <span class="w-screen h-screen flex items-center justify-start bg-black bg-opacity-40 absolute top-0 left-0 p-20">
+    <span class="w-screen h-screen flex items-center justify-start bg-black bg-opacity-70 absolute top-0 left-0 p-20">
       <span class="flex flex-col items-start gap-3 justify-center z-50">
         <span>
           <p class="text-[48px] text-white font-semibold"><span class="text-[#DA2127] text-[48px] font-semibold">Rob</span>otic Automation &</p>
           <p class="text-[48px] text-white font-semibold"><span class="text-[#DA2127] text-[48px] font-semibold">I</span>nnovative<span class="text-[#DA2127] ml-3 text-[48px] font-semibold">S</span>olution.</p>
-          <p class="text-[20px] text-white">Making Automation work for you <span class="text-[#DA2127] text-[20px]  ">.</span></p>
+          <p class="text-[18px] text-white">Making Automation work for you <span class="text-[#DA2127] text-[20px]">.</span></p>
         </span>
 
         <span class="flex gap-5">
@@ -14,7 +14,8 @@
         </span>
       </span>
     </span>
-    <app-video-player [videoURL]="'../../assets/Videos/KIOSK_ROBIS_MOTHERSON.mp4'"></app-video-player>
+    <app-video-player [videoURL]="videoURL"></app-video-player>
+     <!-- <app-image-viewer [imagePath]="'../../assets/Images/robis-vallam.jpg'" [imageText]="'Robis at Vallam'"></app-image-viewer> -->
   </div>
 
   <div id="about" class="w-screen h-screen p-14 flex items-center justify-center pt-20">
@@ -22,16 +23,25 @@
       <div class="flex flex-col items-start justify-start gap-6 w-[55%]">
         <p class="flex text-[30px] items-center text-white font-bold duration-300 hover:text-[#DA2127] hover:duration-300">Robis</p>
         <p class="text-[#9f9f9f] indent-10 text-justify leading-9">{{about}}</p>
-        <button (click)="goto('verticals')" class="cursor-pointer px-10 py-3 mt-3 rounded-md bg-[#DA2127] text-white font-medium text-[16px]">Our Verticals</button>
+        <span class="flex gap-2 items-center justify-center mt-3">
+          <button (click)="goto('verticals')" class="cursor-pointer px-10 py-3 rounded-md bg-[#DA2127] text-white font-medium text-[16px]">Our Verticals</button>
+          <a [routerLink]="['/know-about-us']" target="_blank" class="cursor-pointer flex gap-2.5 hover:underline hover:underline-offset-4 px-10 py-3 rounded-md text-[#DA2127] font-medium text-[16px]">
+            Know More
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="#DA2127" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+
+          </a>
+        </span>
       </div>
       <div class="w-[50%] h-[70%] flex items-center justify-center">
         <img class="w-full h-full object-cover rounded-lg" src=".../../../../assets/Images/robis-vallam.jpg" alt="Robis Unit">
       </div>
     </div>
   </div>
-  <div class="w-screen h-screen pb-32 flex flex-col gap-32 items-center justify-center relative p-10" id="verticals">
+  <div class="w-screen h-screen pb-32 flex flex-col gap-28 items-center justify-center relative p-10" id="verticals">
     <p class="lineHover flex w-[300px] mt-20 items-center flex-col justify-center gap-3 text-white font-bold text-[40px] tracking-wide">VERTICALS <span class="border-[2px] w-full hoverLine duration-300 h-[1px] rounded-full border-[#DA2127]"></span></p>
-    <div class="w-full flex items-center justify-center flex-wrap gap-12">
+    <div class="w-full flex items-center justify-center flex-wrap gap-8">
      @for (vertical of verticals; track vertical) {
       <app-component-card  class="cursor-pointer hover:scale-105 hover:duration-200 duration-200" [title]=vertical.title [routeURL]=vertical.path [description]=vertical.description></app-component-card>
      }

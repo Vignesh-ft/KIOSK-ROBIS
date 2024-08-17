@@ -9,32 +9,39 @@ export class AssemblyAndTestingSolutionsComponent {
   data={
     videoPath : "../../../assets/Videos/Assembly.mp4",
     title: "Assembly & testing Solutions",
-    about: "ROBIS offers a comprehensive suite of digitization solutions designed to revolutionize your operations under Industry 4.0. Our solutions integrate advanced technologies to enhance visibility, efficiency, and sustainability within your facility. By leveraging real-time data and cutting-edge analytics, ROBIS empowers you to make informed decisions and drive operational excellence. ",
+    aboutVideo: '../../../assets/Verticals Video/Assembly + Testing & Joining Solution.mp4',
+    about: "ROBIS offers a range of Assembly & Testing Solutions designed to improve efficiency, accuracy, and quality across various industries. Our solutions address specific challenges and streamline production processes through advanced technology and customized systems. By focusing on your unique needs, we provide solutions that enhance operational performance and ensure high-quality results.",
     documentLink: "",
     products:[
       {
-        productName:"R-Asset",
+        productName:"Poka-Yoke Systems",
         productImg: "",
-        productDesc:"R-Asset is a state-of-the-art asset tracking solution that provides real-time visibility into the location and status of your assets. It ensures optimal asset utilization, minimizes downtime, and enhances operational efficiency by keeping you always informed about your equipment.",
-        productURL:"/industry4-0/r-asset"
+        productDesc:"Poka-Yoke systems, or error-proofing solutions, enhance production quality and efficiency by using sensors, fixtures, and controls to prevent errors. Integrating these systems ensures consistently high-quality outcomes, minimizes defects, and reduces costly rework. Adopting Poka-Yoke not only meets but exceeds quality standards, boosting customer satisfaction and expediting production.",
+        productURL:""
       },
       {
-        productName:"R-Energy",
+        productName:"Complex Assembly Stations",
         productImg: "",
-        productDesc:"R-Energy allows you to monitor and analyze energy consumption across your operations with precision. Featuring detailed charts and data visualization, it helps you identify energy usage patterns, address inefficiencies, and make data-driven decisions to improve energy efficiency and reduce costs. ",
-        productURL:"/"
+        productDesc:"Our complex assembly stations are designed for intricate, multi-step processes with flexibility and precision. Suitable for industries like aerospace, medical devices, and electronics, they handle various product configurations and assembly requirements.",
+        productURL:""
       },
       {
-        productName:"R-Carbon",
+        productName:"End-of-Line Testers  ",
         productImg: "",
-        productDesc:"R-Carbon is designed to track and manage carbon emissions within your facility. This solution provides real-time monitoring and reporting of emissions, supporting your compliance with environmental regulations and helping you implement effective sustainability initiatives.",
-        productURL:"/"
+        productDesc:"End-of-line testers ensure products meet quality and performance standards before leaving the production line. Our advanced, customizable testing solutions provide reliable diagnostics and verify functionality, ensuring consistent quality across various product types and industries.",
+        productURL:""
       },
       {
-        productName:"R-Connect",
+        productName:"Special Purpose Machines (SPMs)",
         productImg: "",
-        productDesc:"R-Connect facilitates seamless connectivity with shop floor injection molding machines, regardless of their make or manufacturing year. It enables you to monitor machine performance, gather crucial operational data, and optimize maintenance practices to boost productivity and reduce downtime.",
-        productURL:"/"
+        productDesc:"We design and manufacture Special Purpose Machines (SPMs) to address specific customer needs and unique manufacturing challenges. These custom-built machines are tailored to your precise requirements, offering solutions that enhance efficiency and meet complex production demands.",
+        productURL:""
+      },
+      {
+        productName:"Conveyor Solutions ",
+        productImg: "",
+        productDesc:"Our conveyor systems streamline material handling and product flow with options like belt, roller, and modular conveyors. These solutions integrate seamlessly into your production line, enhancing efficiency and reducing manual handling.",
+        productURL:""
       }
     ]
   }

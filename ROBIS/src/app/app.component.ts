@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieManagerService } from './services/cookie-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ROBIS';
+
+  constructor(private cookieManager: CookieManagerService) {}
+
+  ngOnInit() {
+    this.cookieManager.clearCookiesIn15Minutes();
+  }
 }

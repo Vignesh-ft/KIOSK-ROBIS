@@ -9,32 +9,39 @@ export class JoiningSolutionsComponent {
   data={
     videoPath : "../../../assets/Videos/Joining Process.mp4",
     title: "Joining Solutions",
-    about: "ROBIS offers a comprehensive suite of digitization solutions designed to revolutionize your operations under Industry 4.0. Our solutions integrate advanced technologies to enhance visibility, efficiency, and sustainability within your facility. By leveraging real-time data and cutting-edge analytics, ROBIS empowers you to make informed decisions and drive operational excellence. ",
+    subTitle:'SERVICES',
+    about: "ROBIS provides a diverse range of Joining Solutions designed to meet various needs in plastic joining and assembly. Our advanced technologies ensure strong, reliable, and precise connections, enhancing product quality and manufacturing efficiency. Whether you require standard joining methods or customized solutions, we offer the expertise and technology to deliver optimal results.",
     documentLink: "",
     products:[
       {
-        productName:"R-Asset",
+        productName:"Ultrasonic Welding",
         productImg: "",
-        productDesc:"R-Asset is a state-of-the-art asset tracking solution that provides real-time visibility into the location and status of your assets. It ensures optimal asset utilization, minimizes downtime, and enhances operational efficiency by keeping you always informed about your equipment.",
-        productURL:"/industry4-0/r-asset"
+        productDesc:"Ultrasonic welding utilizes high-frequency ultrasonic vibrations to generate localized heat, fusing plastic parts together without the need for additional materials. This method is ideal for producing strong, precise welds with minimal thermal impact, making it suitable for applications in automotive, electronics, and medical device manufacturing.",
+        productURL:""
       },
       {
-        productName:"R-Energy",
+        productName:"Hotplate Welding",
         productImg: "",
-        productDesc:"R-Energy allows you to monitor and analyze energy consumption across your operations with precision. Featuring detailed charts and data visualization, it helps you identify energy usage patterns, address inefficiencies, and make data-driven decisions to improve energy efficiency and reduce costs. ",
-        productURL:"/"
+        productDesc:"Hotplate welding involves heating plastic parts on a heated plate until they reach the desired temperature, then pressing them together to form a weld. This method is effective for joining large or complex parts, providing strong, consistent welds with precise control over the welding process.",
+        productURL:""
       },
       {
-        productName:"R-Carbon",
+        productName:"Heat Staking",
         productImg: "",
-        productDesc:"R-Carbon is designed to track and manage carbon emissions within your facility. This solution provides real-time monitoring and reporting of emissions, supporting your compliance with environmental regulations and helping you implement effective sustainability initiatives.",
-        productURL:"/"
+        productDesc:"Heat staking uses localized heat to melt and deform plastic stakes, which then solidify to form a secure connection between parts. This method is commonly used for assembly in electronics and automotive applications, where it offers a reliable way to attach components without the need for additional fasteners.",
+        productURL:""
       },
       {
-        productName:"R-Connect",
+        productName:"Vibrational Welding",
         productImg: "",
-        productDesc:"R-Connect facilitates seamless connectivity with shop floor injection molding machines, regardless of their make or manufacturing year. It enables you to monitor machine performance, gather crucial operational data, and optimize maintenance practices to boost productivity and reduce downtime.",
-        productURL:"/"
+        productDesc:"Vibrational welding employs high-frequency vibrations to generate heat through friction, melting and joining plastic parts. This technique is suitable for applications requiring precise alignment and strong welds, making it ideal for the assembly of small to medium-sized components in industries like consumer goods and medical devices.",
+        productURL:""
+      },
+      {
+        productName:"Special Purpose Machines",
+        productImg: "",
+        productDesc:"ROBIS offers custom-built machines for unique plastic joining challenges, tailored to specific customer needs. Our Joining Solutions blend advanced technology with industry expertise for high-quality, reliable results. Whether conventional or bespoke, our solutions enhance manufacturing processes and product performance.",
+        productURL:""
       }
     ]
   }

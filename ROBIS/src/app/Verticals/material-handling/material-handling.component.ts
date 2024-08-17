@@ -9,33 +9,58 @@ export class MaterialHandlingComponent {
   data={
     videoPath : "../../../assets/Videos/Warehouse.mp4",
     title: "Material Handling and Warehouse Solutions",
-    about: "ROBIS offers a comprehensive suite of digitization solutions designed to revolutionize your operations under Industry 4.0. Our solutions integrate advanced technologies to enhance visibility, efficiency, and sustainability within your facility. By leveraging real-time data and cutting-edge analytics, ROBIS empowers you to make informed decisions and drive operational excellence. ",
+    aboutVideo:'../../../assets/Verticals Video/Material Handling & WA.mp4',
+    about: "ROBIS provides advanced solutions in Material Handling & Warehouse Automation designed to enhance the efficiency and effectiveness of your logistics operations. Our suite of technologies and automation systems streamline material handling processes, ensuring optimal performance and scalability across your warehouse operations.",
     documentLink: "",
     products:[
       {
-        productName:"R-Asset",
+        productName:"Automated Guided Vehicles (AGVs)",
         productImg: "",
-        productDesc:"R-Asset is a state-of-the-art asset tracking solution that provides real-time visibility into the location and status of your assets. It ensures optimal asset utilization, minimizes downtime, and enhances operational efficiency by keeping you always informed about your equipment.",
-        productURL:"/industry4-0/r-asset"
+        productDesc:"Our AGVs automate the transportation of materials within your facility. Equipped with advanced navigation and control systems, AGVs improve throughput, reduce manual handling, and enhance safety by autonomously moving goods to designated locations.",
+        productURL:""
       },
       {
-        productName:"R-Energy",
+        productName:"Autonomous Mobile Robots (AMRs)",
         productImg: "",
-        productDesc:"R-Energy allows you to monitor and analyze energy consumption across your operations with precision. Featuring detailed charts and data visualization, it helps you identify energy usage patterns, address inefficiencies, and make data-driven decisions to improve energy efficiency and reduce costs. ",
-        productURL:"/"
+        productDesc:"ROBIS’s AMRs provide dynamic and flexible material handling in complex warehouses. With advanced sensors and AI, they adapt to surroundings, ensuring efficient transport, improved flexibility, seamless integration, and reduced operational costs.",
+        productURL:""
       },
       {
-        productName:"R-Carbon",
+        productName:"Warehouse Management Systems (WMS)",
         productImg: "",
-        productDesc:"R-Carbon is designed to track and manage carbon emissions within your facility. This solution provides real-time monitoring and reporting of emissions, supporting your compliance with environmental regulations and helping you implement effective sustainability initiatives.",
-        productURL:"/"
+        productDesc:"Our WMS provides a robust platform for managing warehouse operations, including real-time inventory tracking, order management, and data analytics. It streamlines processes, enhances accuracy, and improves overall operational efficiency.",
+        productURL:""
       },
       {
-        productName:"R-Connect",
+        productName:"Automated Storage and Retrieval Systems (AS/RS)",
         productImg: "",
-        productDesc:"R-Connect facilitates seamless connectivity with shop floor injection molding machines, regardless of their make or manufacturing year. It enables you to monitor machine performance, gather crucial operational data, and optimize maintenance practices to boost productivity and reduce downtime.",
-        productURL:"/"
-      }
+        productDesc:"AS/RS solutions automate storage and retrieval, optimizing space and reducing manual labor. Utilizing robotics and advanced algorithms, they ensure fast, accurate inventory handling, speeding up order fulfillment and lowering costs.",
+        productURL:""
+      },
+      {
+        productName:"L-Series",
+        productImg: "",
+        productDesc:"The L-Series vehicles are designed for efficient material handling for medium-duty applications. These vehicles offer robust performance and are ideal for navigating tight spaces and handling a variety of materials with precision.",
+        productURL:""
+      },
+      {
+        productName:"Compact Series",
+        productImg: "",
+        productDesc:"The Compact Series vehicles are tailored for environments where space is limited. Their compact design allows for maneuverability in confined areas, making them perfect for small to medium-sized warehouses that require agile and flexible material handling solutions.",
+        productURL:""
+      },
+      {
+        productName:"Counterbalance",
+        productImg: "",
+        productDesc:"Counterbalance vehicles are equipped to handle heavy loads with stability and precision. They are ideal for applications requiring significant lifting capabilities and are designed to provide robust performance and durability in demanding environments.",
+        productURL:""
+      },
+      {
+        productName:"Forkover",
+        productImg: "",
+        productDesc:"Forkover vehicles are specialized for handling goods in high-density storage environments. They feature extended forks and high lifting capabilities, making them suitable for tasks that involve reaching and retrieving materials from elevated storage locations.",
+        productURL:""
+      },
     ]
   }
 }

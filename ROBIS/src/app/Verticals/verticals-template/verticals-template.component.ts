@@ -16,7 +16,9 @@ export class VerticalsTemplateComponent implements OnInit {
   Message = "Hover to watch the Video"
   videoPath:string = ""
   title:string = ""
+  subTitle:string = ""
   about:string = ""
+  aboutVideo: any = ""
   documentLink:string = ""
   products:any
   showButton:boolean = false
@@ -25,11 +27,13 @@ export class VerticalsTemplateComponent implements OnInit {
   ngOnInit(): void {
     this.timingFunction()
     console.log(this.data)
+    this.aboutVideo = this.data.aboutVideo
     this.videoPath = this.data.videoPath
     this.title = this.data.title
     this.about = this.data.about
     this.documentLink = this.data.documentLink
     this.products = this.data.products
+    this.subTitle = this.data?.subTitle ? this.data?.subTitle : "PRODUCTS"
   }
 
   timingFunction() {

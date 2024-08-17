@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 
+ *{
+  user-select: none;       /* Prevent text selection */
+  outline: none;           /* Remove any outline on focus */
+  cursor: default;         /* Ensure the cursor doesn't change to a text cursor */
+}
+
+
 
 body {
   background-color: black;

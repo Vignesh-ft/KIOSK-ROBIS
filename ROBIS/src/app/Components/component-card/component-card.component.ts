@@ -12,17 +12,16 @@ export class ComponentCardComponent {
 
   getInfo(title: string) {
 
-    console.log("Card is working!");
-    alert();
+    // console.log("Card is working!");
     const userId = 1; // Replace with actual logic to retrieve the logged-in user's ID
-  
+
     const verticalData = {
       userId: userId,
       verticalName: title
     };
-  
+
     console.log('Sending request to save vertical:', verticalData); // Log the data being sent
-  
+
     fetch('http://localhost:3000/verticles', {
       method: 'POST',
       headers: {
