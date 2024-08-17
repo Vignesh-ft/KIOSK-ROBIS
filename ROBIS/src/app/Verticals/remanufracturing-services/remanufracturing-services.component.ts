@@ -9,32 +9,33 @@ export class RemanufracturingServicesComponent {
   data={
     videoPath : "../../../assets/Videos/Remanufracturing.mp4",
     title: "Remanufracturing Solutions",
-    about: "ROBIS offers a comprehensive suite of digitization solutions designed to revolutionize your operations under Industry 4.0. Our solutions integrate advanced technologies to enhance visibility, efficiency, and sustainability within your facility. By leveraging real-time data and cutting-edge analytics, ROBIS empowers you to make informed decisions and drive operational excellence. ",
+    subTitle: "SERVICES",
+    about: "ROBIS provides comprehensive IMM (Injection Molding Machine) Remanufacturing Services designed to enhance the performance, efficiency, and lifespan of your existing machinery. Our expert services address a range of needs, from upgrading control systems to relocating and retrofitting machines. We focus on delivering tailored solutions that meet your specific requirements and improve the functionality of your equipment.",
     documentLink: "",
     products:[
       {
-        productName:"R-Asset",
+        productName:"Control Retrofitment",
         productImg: "",
-        productDesc:"R-Asset is a state-of-the-art asset tracking solution that provides real-time visibility into the location and status of your assets. It ensures optimal asset utilization, minimizes downtime, and enhances operational efficiency by keeping you always informed about your equipment.",
-        productURL:"/industry4-0/r-asset"
+        productDesc:"Our Control Retrofitment service upgrades IMM machine control systems with the latest technology, enhancing performance and precision. This modernization improves process control, ensures compatibility with modern software, and boosts operational efficiency.",
+        productURL:""
       },
       {
-        productName:"R-Energy",
+        productName:"Servo Pump Upgrade",
         productImg: "",
-        productDesc:"R-Energy allows you to monitor and analyze energy consumption across your operations with precision. Featuring detailed charts and data visualization, it helps you identify energy usage patterns, address inefficiencies, and make data-driven decisions to improve energy efficiency and reduce costs. ",
-        productURL:"/"
+        productDesc:"The Servo Pump Upgrade replaces hydraulic pumps with advanced servo-driven ones, boosting energy efficiency, reducing noise, and enhancing IMM machine performance. This upgrade increases precision, speeds up cycle times, and lowers operating costs.",
+        productURL:""
       },
       {
-        productName:"R-Carbon",
+        productName:"Machine Relocation Services",
         productImg: "",
-        productDesc:"R-Carbon is designed to track and manage carbon emissions within your facility. This solution provides real-time monitoring and reporting of emissions, supporting your compliance with environmental regulations and helping you implement effective sustainability initiatives.",
-        productURL:"/"
+        productDesc:"The Servo Pump Upgrade replaces hydraulic pumps with advanced servo-driven ones, boosting energy efficiency, reducing noise, and enhancing IMM machine performance. This upgrade increases precision, speeds up cycle times, and lowers operating costs.",
+        productURL:""
       },
       {
-        productName:"R-Connect",
+        productName:"Electric Retrofitment ",
         productImg: "",
-        productDesc:"R-Connect facilitates seamless connectivity with shop floor injection molding machines, regardless of their make or manufacturing year. It enables you to monitor machine performance, gather crucial operational data, and optimize maintenance practices to boost productivity and reduce downtime.",
-        productURL:"/"
+        productDesc:"Electric Retrofitment upgrades your IMM machines' electrical components, including wiring, controllers, and panels, to improve reliability and performance. This modernization enhances energy management and reduces maintenance needs.",
+        productURL:""
       }
     ]
   }

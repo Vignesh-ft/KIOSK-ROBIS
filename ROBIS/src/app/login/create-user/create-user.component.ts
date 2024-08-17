@@ -11,6 +11,14 @@ export class CreateUserComponent {
   constructor(private router:Router){
 
   }
+
+  tAndC = false
+
+  termsAndConditions() {
+    this.tAndC = !this.tAndC
+  }
+
+
   countries = [
     {name: 'Afghanistan', code: 'AF'},
     {name: 'Åland Islands', code: 'AX'},
@@ -270,7 +278,7 @@ export class CreateUserComponent {
   ]
 
   validateCreateUser(){
-    if(this.userName === "" && this.companyName === "" && this.emailAddress === "" && this.country === "" && this.phoneNumber === "") {
+    if(this.userName === "" && this.companyName === "" && this.emailAddress === "" && this.country === "" && this.phoneNumber === "" &&this.tAndC === false) {
       this.errorMessage = "Enter the Credentials to Create User"
       return
     }
@@ -305,6 +313,10 @@ export class CreateUserComponent {
         this.errorMessage = "Phone Number is Requried"
         return
       }
+
+      else if(this.tAndC === false) {
+        this.errorMessage = "Accept the Terms and Conditions"
+      }
     }
 
     const user = {
@@ -333,14 +345,14 @@ export class CreateUserComponent {
     })
     .then(data => {
       console.log('User created successfully:', data);
-      
+
       // Clear form fields after successful creation
       this.userName = "";
       this.phoneNumber = "";
       this.emailAddress = "";
       this.country = "";
       this.companyName = "";
-    
+
       // Navigate to login page
       this.router.navigateByUrl('/login');
     })
@@ -348,8 +360,8 @@ export class CreateUserComponent {
       console.error('There was a problem with the fetch operation:', error);
       this.errorMessage = error.message || 'There was a problem with the fetch operation.';
     });
-    
-  
+
+
     // Optionally reset user credentials array
     this.userCredentials = [...this.userCredentials, this.schema];
   }

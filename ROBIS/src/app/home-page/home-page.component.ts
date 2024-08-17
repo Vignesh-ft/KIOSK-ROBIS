@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent {
 
-  constructor(private router:Router){}
+  constructor(private router:Router, private cookieService:CookieService){}
+
+  videoURL = "../../assets/Videos/Home_Display-1.mp4"
   currentAddress = this.router.url
   about= "Founded in 2009, ROBIS embodies Motherson's vision of self-reliance and innovation in Robotics Automation and Innovative Solutions. Headquartered in Chennai, ROBIS is the central hub for design, technology, product development, manufacturing, and testing. To support our global expansion, we have established satellite centers in Europe, dedicated to providing sales and service support. Our journey is driven by perseverance, dedication, and a commitment to self-sufficiency, which has fostered trust and reliability among our customers. With a strong emphasis on technical expertise, a global perspective, and customer-centric solutions, ROBIS consistently delivers innovative and dependable solutions, solidifying our reputation as a trusted partner worldwide."
 
@@ -23,22 +26,22 @@ export class HomePageComponent {
     {
       path: "/machine-rmfg",
       title: "Remanufacturing Services​",
-      description: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sapiente, hic, illum saepe iste deleniti officia"
+      description: "Remanufacturing services restore used products to like-new condition, providing a cost-effective and eco-friendly alternative by extending product life, reducing waste, and conserving resources."
     },
     {
       path: "/qa-testing",
       title: "Assembly & Testing Solutions​",
-      description: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sapiente, hic, illum saepe iste deleniti officia"
+      description: "Assembly and Testing solutions ensure products are precisely assembled and rigorously tested, delivering reliable, high-quality outcomes that meet industry standards and customer specifications."
     },
     {
-      path: "/i-asmbly",
-      title: "IMM Robots & Accessories​",
-      description: " "
+      path: "/rob-auto",
+      title: "Robotics and Robotics Automation​",
+      description: "Robotics and Robotics Automation solutions streamline operations by integrating advanced robotics to enhance efficiency, precision, and productivity, driving innovation and competitive advantage in various industries."
     },
     {
       path: "/join-sol",
       title: "Joining Solutions​",
-      description: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sapiente, hic, illum saepe iste deleniti officia"
+      description: "Joining solutions provide reliable and precise methods for bonding materials, ensuring strong, durable connections that meet industry standards and enhance the overall quality and performance of products."
     },
     {
       path: "/mat-handlng",
@@ -51,5 +54,5 @@ export class HomePageComponent {
     document.getElementById(address)?.scrollIntoView({behavior:'smooth'})
   }
 
-  
+
 }
