@@ -6,6 +6,7 @@ const XLSX = require('xlsx');
 const path = require('path'); 
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
+const { format } = require('date-fns');
 
 // Create an Express app
 const app = express();
@@ -152,12 +153,12 @@ app.post('/userdetails', async (req, res) => {
         [userId, verticalName]
       );
   
-      const verticalId = result.rows[0].id;
-      res.status(201).json({ message: 'Vertical created', verticalId });
-    } catch (err) {
-      console.error('Error creating vertical:', err);
-      res.status(500).json({ message: 'Error creating vertical', error: err.message });
-    }
+      const verticalId = result.rows[0].id; // Get the auto-generated ID
+    res.status(201).json({ message: 'Vertical saved', verticalId }); // Return the vertical ID
+  } catch (error) {
+    console.error('Error saving vertical:', error);
+    res.status(500).json({ error: 'Failed to save vertical' });
+  }
   });
   
   
@@ -190,14 +191,14 @@ app.post('/userdetails', async (req, res) => {
         LEFT JOIN actions a ON v.id = a.verticle_id;
       `);
   
-      // Format the data with formatted dates
       const data = result.rows.map(row => ({
         Name: row.name,
         Company: row.company,
         Country: row.country,
         PhoneNumber: row.phone_number,
         Email: row.e_mail,
-        Time: row.time ? format(new Date(row.time), 'dd/MM/yyyy HH:mm') : null, // Format the date
+        // Format the date using date-fns
+        Time: row.time ? format(new Date(row.time), 'dd/MM/yyyy HH:mm') : null, 
         VerticalName: row.vertical_name,
         Product: row.product,
       }));
@@ -223,7 +224,8 @@ app.post('/userdetails', async (req, res) => {
       console.error('Error exporting data:', err);
       res.status(500).json({ message: 'Error exporting data', error: err.message });
     }
-  });  
+  });
+   
   
   
   
