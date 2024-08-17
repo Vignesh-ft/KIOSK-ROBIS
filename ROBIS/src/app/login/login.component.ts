@@ -93,16 +93,19 @@ export class LoginComponent {
       return response.json();
     })
     .then(data => {
-      console.log('User details response:', data);
-      if (data.message === 'User created') {
-        // Set the cookie with appropriate options
-        this.cookieService.set('userId', data.userId, { path: '/', sameSite: 'Lax' }); // Adjust SameSite based on your setup
+      console.log('Response data:', data);  // Log the entire response
+      console.log('Message:', data.message); // Log the specific field to check its value
+      if (data.message === 'User details saved') {
+        console.log("Message Created!");
+    
+        this.cookieService.set('userId', data.id, { path: '/', sameSite: 'Lax' });
         console.log('User ID stored in cookie:', this.cookieService.get('userId'));
         this.router.navigateByUrl('/home');
       } else {
         this.errorMessage = 'Failed to save user details';
       }
     })
+    
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
       this.errorMessage = 'There was a problem with the fetch operation.';

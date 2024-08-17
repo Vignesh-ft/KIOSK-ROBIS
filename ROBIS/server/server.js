@@ -114,8 +114,6 @@ app.post('/login', async (req, res) => {
 
 
 app.post('/userdetails', async (req, res) => {
-  
-
   let { name, email, company, country, phoneNumber, time } = req.body;
 
   // Convert empty or undefined values to null for the database
@@ -131,12 +129,15 @@ app.post('/userdetails', async (req, res) => {
     );
 
     const userId = result.rows[0].id; // Get the auto-generated ID
-    res.status(201).json({ message: 'User details saved', id: userId }); // Return the userId
+
+    // Respond with the created user ID
+    res.status(201).json({ message: 'User details saved', id: userId });
   } catch (err) {
     console.error('Error creating user:', err);
     res.status(500).json({ message: 'Error creating user', error: err.message });
   }
 });
+
 
 
 
