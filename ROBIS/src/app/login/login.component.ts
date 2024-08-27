@@ -97,7 +97,7 @@ export class LoginComponent {
       console.log('Message:', data.message); // Log the specific field to check its value
       if (data.message === 'User details saved') {
         console.log("Message Created!");
-    
+
         this.cookieService.set('userId', data.id, { path: '/', sameSite: 'Lax' });
         console.log('User ID stored in cookie:', this.cookieService.get('userId'));
         this.router.navigateByUrl('/home');
@@ -105,7 +105,7 @@ export class LoginComponent {
         this.errorMessage = 'Failed to save user details';
       }
     })
-    
+
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
       this.errorMessage = 'There was a problem with the fetch operation.';

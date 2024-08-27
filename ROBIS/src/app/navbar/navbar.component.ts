@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +10,14 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   logoColor = false
 
+  constructor(private cookieService:CookieService, private router:Router){}
+
   changeColor(){
     this.logoColor = !this.logoColor
+  }
+
+  logout() {
+    this.cookieService.deleteAll()
+    this.router.navigate([''])
   }
 }

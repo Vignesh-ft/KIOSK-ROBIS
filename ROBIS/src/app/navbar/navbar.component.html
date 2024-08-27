@@ -1,6 +1,6 @@
 <div class="w-full py-5 bg-transparent flex items-center justify-between px-6">
   <a [routerLink]="['/home']">
-    <svg (mouseenter)="changeColor()"  [ngClass]="{'hidden':logoColor}" width="92" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 244 54.7" style="enable-background:new 0 0 244 54.7;" xml:space="preserve">
+    <svg (mouseenter)="changeColor()"  [ngClass]="{'hidden':logoColor}" width="97" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 244 54.7" style="enable-background:new 0 0 244 54.7;" xml:space="preserve">
       <style type="text/css">
        .st0{fill-rule:evenodd;clip-rule:evenodd;fill:#DA2020;}
       </style>
@@ -42,19 +42,11 @@
        3.452-3.629 3.452S51.3 18.515 51.3 16.37m8.066-3.4h2.272v1.065c.355-.685 1.078-1.243 2.182-1.243 1.282 0 2.17.799 2.17 2.5v4.313h-2.27v-3.857c0-.748-.292-1.116-.952-1.116-.672 0-1.13.406-1.13 1.256v3.717h-2.27z" fill="#FFF" fill-rule="evenodd"/>
       </svg>
   </a>
-  <!-- <span class="flex items-center gap-10">
-    <span class="flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-white">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#DA2127" class="size-7">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-      </svg>
-      <p class="flex items-center font-semibold">HOME</p>
+  <span class="flex items-center gap-10">
+    <span (click)="logout()" class="onHover">
+      <p class="flex px-7 py-2.5 relative font-semibold items-center text-[#fff] bg-[#DA2127] cursor-pointer rounded-full onHoverText duration-300 hover:text-white">
+        Logout
+      </p>
     </span>
-
-    <span class="flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-[#DA2127]">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFF" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-      </svg>
-      <p class="flex items-center font-semibold text-white">CONTACT</p>
-    </span>
-  </span> -->
+  </span>
 </div>

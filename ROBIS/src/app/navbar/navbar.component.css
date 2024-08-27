@@ -1,0 +1,15 @@
+.onHover:hover .onHoverBox {
+  @apply w-full h-full rounded-full duration-300
+}
+
+.onHoverBox {
+  @apply w-0 h-0 duration-300
+}
+
+.onHover:hover {
+  @apply text-white
+}
+
+.onHover:hover .onHoverText {
+  @apply text-white
+}
