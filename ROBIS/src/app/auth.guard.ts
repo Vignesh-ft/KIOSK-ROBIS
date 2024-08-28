@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     const userId = this.cookieService.get('userId');
 
     if (userId) {
-      // userId cookie exists, allow access
+      //this.router.navigateByUrl('/')
       return true;
     } else {
       // userId cookie does not exist, redirect to login

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
   phone='';
   errorMessage = '';
 
-  constructor(private router: Router, private cookieService: CookieService) {}
+  constructor(private router: Router, private cookieService: CookieService, private authService:AuthService) {}
 
   validateLogin() {
     // Clear previous error message
@@ -60,6 +61,7 @@ export class LoginComponent {
       console.log('Login response data:', data);  // Log the response data
       if (data.message === 'Login successful') {
         this.router.navigateByUrl('/home');
+        this.authService.login(`_user=${JSON.stringify(data.user)}`);
 
 
         // Prepare the user details fetched from the login response
