@@ -10,11 +10,14 @@ export class AuthService { // Replace with your actual service or component name
 
   login(user: string) {
     if (this.isCookieEmpty()) {
-      this.cookieService.set('userId', user);
+        console.log("Auth Service: ");
+        localStorage.setItem('userId', user);
+        this.cookieService.set('userId', user);
     }
   }
 
   isCookieEmpty(): boolean {
+    console.log("Auth Service");
     return !this.cookieService.check('userId');
   }
 }

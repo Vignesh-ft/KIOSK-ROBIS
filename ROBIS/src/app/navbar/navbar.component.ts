@@ -18,6 +18,8 @@ export class NavbarComponent {
 
   logout() {
     this.cookieService.deleteAll()
+    console.log("Inside Logout");
+    localStorage.clear();
     this.router.navigate([''])
   }
 }

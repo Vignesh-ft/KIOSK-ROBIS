@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { CookieManagerService } from '../services/cookie-manager.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
 
-  constructor(private router:Router, private cookieService:CookieService){}
+  constructor(private router:Router, private cookieService:CookieService, private cookieManager:CookieManagerService){}
+
+  ngOnInit(): void {
+    this.cookieManager.clearCookiesIn15Minutes();
+  }
 
   videoURL = "../../assets/Videos/Home_Display-1.mp4"
   currentAddress = this.router.url

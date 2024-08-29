@@ -11,9 +11,8 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     const userId = this.cookieService.get('userId');
-
+    
     if (userId) {
-      //this.router.navigateByUrl('/')
       return true;
     } else {
       // userId cookie does not exist, redirect to login

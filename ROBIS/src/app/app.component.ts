@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CookieManagerService } from './services/cookie-manager.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,12 @@ import { CookieManagerService } from './services/cookie-manager.service';
 export class AppComponent {
   title = 'ROBIS';
 
-  constructor(private cookieManager: CookieManagerService) {}
+  constructor(private cookieManager: CookieManagerService, private cookieService:CookieService) {}
 
   ngOnInit() {
-    this.cookieManager.clearCookiesIn15Minutes();
+    let localStorageCookie = localStorage.getItem('Vignes')
+    if(localStorageCookie) {
+      this.cookieService.set("userId", localStorageCookie)
+    }
   }
 }

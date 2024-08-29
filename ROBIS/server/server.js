@@ -30,12 +30,23 @@ app.use(cors({
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(cookieParser());
 
-
 //creating the new user
 app.post('/createUsers', async (req, res) => {
   const { username, company, email, country, phone } = req.body;
 
   try {
+    // Check if the phone number already exists
+    const existingUser = await pool.query(
+      'SELECT * FROM users WHERE phone = $1',
+      [phone]
+    );
+
+    if (existingUser.rows.length > 0) {
+      console.error('Error: Phone number already exists');
+      return res.status(400).json({ message: 'Phone number already exists' });
+    }
+
+    // Create the user if the phone number is not found
     const newUser = await pool.query(
       'INSERT INTO users (username, company, email, country, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [username, company, email, country, phone]
@@ -47,6 +58,7 @@ app.post('/createUsers', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 //Login with the username and phone number
 app.post('/login', async (req, res) => {
@@ -73,7 +85,7 @@ app.post('/login', async (req, res) => {
     }
   } catch (error) {
     console.error('Error logging in:', error);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: 'Invalid credentials' });
   }
 });
 

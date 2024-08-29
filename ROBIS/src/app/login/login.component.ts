@@ -61,7 +61,7 @@ export class LoginComponent {
       console.log('Login response data:', data);  // Log the response data
       if (data.message === 'Login successful') {
         this.router.navigateByUrl('/home');
-        this.authService.login(`_user=${JSON.stringify(data.user)}`);
+        this.authService.login(`userId=${JSON.stringify(data.user)}`);
 
 
         // Prepare the user details fetched from the login response
@@ -101,6 +101,7 @@ export class LoginComponent {
         console.log("Message Created!");
 
         this.cookieService.set('userId', data.id, { path: '/', sameSite: 'Lax' });
+        localStorage.setItem('Vignes', data.id)
         console.log('User ID stored in cookie:', this.cookieService.get('userId'));
         this.router.navigateByUrl('/home');
       } else {
@@ -110,7 +111,7 @@ export class LoginComponent {
 
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
-      this.errorMessage = 'There was a problem with the fetch operation.';
+      this.errorMessage = 'Invalid Credentials';
     });
 
 
