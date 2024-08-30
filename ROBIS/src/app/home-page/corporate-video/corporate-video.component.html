@@ -1,5 +1,5 @@
 <div class="flex w-screen h-screen items-center justify-center">
-  <app-navbar class="absolute top-0 left-0 z-50"></app-navbar>
+  <app-navbar class="absolute top-0 left-0 z-50 w-screen"></app-navbar>
   <video #CorpVideo class="flex size-full rounded-lg" [autoplay]="true" (click)="pauseAndPlay(CorpVideo)" [src]="videoURL"></video>
   <div [ngClass]="{'opacity-0': buttonVisible}" class="size-20 duration-300 bg-gray-200 shadow-[0_0_30px_#DA212750] rounded-full absolute flex items-center justify-center">
     <svg [ngClass]="{'hidden': !videoState}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4.5" stroke="#DA2127" class="size-10">
