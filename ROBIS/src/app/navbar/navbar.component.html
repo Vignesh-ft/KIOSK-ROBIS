@@ -42,7 +42,7 @@
        3.452-3.629 3.452S51.3 18.515 51.3 16.37m8.066-3.4h2.272v1.065c.355-.685 1.078-1.243 2.182-1.243 1.282 0 2.17.799 2.17 2.5v4.313h-2.27v-3.857c0-.748-.292-1.116-.952-1.116-.672 0-1.13.406-1.13 1.256v3.717h-2.27z" fill="#FFF" fill-rule="evenodd"/>
       </svg>
   </a>
-  <span class="flex items-center gap-10">
+  <span [ngClass]="{hidden:logoutButton}" class="flex items-center gap-10">
     <span (click)="logout()" class="onHover">
       <p class="flex px-7 py-2.5 relative font-semibold items-center text-[#fff] bg-[#DA2127] cursor-pointer rounded-full onHoverText duration-300 hover:text-white">
         Logout

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -11,6 +11,13 @@ export class NavbarComponent {
   logoColor = false
 
   constructor(private cookieService:CookieService, private router:Router){}
+
+  logoutButton():boolean {
+    if(this,this.router.url === "/know-about-us"){
+      return false
+    }
+    return true
+  }
 
   changeColor(){
     this.logoColor = !this.logoColor
